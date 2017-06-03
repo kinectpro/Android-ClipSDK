@@ -1,0 +1,83 @@
+<!--
+  ~ Copyright (c) 2015, Nordic Semiconductor
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+  ~
+  ~ 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+  ~
+  ~ 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the
+  ~ documentation and/or other materials provided with the distribution.
+  ~
+  ~ 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this
+  ~ software without specific prior written permission.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  ~ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  ~ HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  ~ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+  ~ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+  ~ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<resources>
+    <string name="application_settings">Application settings</string>
+    <string name="application_settings_summary">Phone application settings</string>
+
+    <string name="wear_settings">SmartWatch settings</string>
+    <string name="wear_settings_summary">Settings for the SmartWatch behaviour</string>
+
+    <string name="clip_settings">Clip settings</string>
+    <string name="clip_settings_summary">Settings for the hardware Clip</string>
+
+    <string name="device_speed_capture">Samples per second</string>
+    <string name="device_speed_capture_summary">Setup the sample rate for Clip.</string>
+    <string name="device_speed_capture_title">Clip sampling rate</string>
+
+    <string name="device_bluetooth_name">Device name</string>
+    <string name="device_bluetooth_name_summary">Select a name for Clip</string>
+    <string name="device_bluetooth_name_title">Change the name of Clip</string>
+
+    <string name="vibration_category">Wearable Vibration</string>
+
+    <string name="show_notifications">Notifications behaviour</string>
+    <string name="notification_set_listener_summary">Set the permissions for notifications to work.</string>
+    <string name="notification_set_listener_title">Permissions</string>
+
+    <string name="wear_vibration">Vibration</string>
+    <string name="wear_vibration_summary_checkbox_preference">Vibrate when gestures are detected</string>
+
+    <string name="wear_vibration_intensity">Vibration intensity</string>
+    <string name="wear_vibration_intensity_summary">Select the intensity of vibration</string>
+    <string name="wear_vibration_intensity_title">Select the intensity of vibration</string>
+
+    <string name="clip_development_settings">Development</string>
+
+
+    <string name="title_list_preference">title_list_preference</string>
+    <string name="summary_list_preference">summary_list_preference</string>
+    <string name="entries_list_preference">entries_list_preference</string>
+    <string name="entryvalues_list_preference">entryvalues_list_preference</string>
+    <string name="dialog_title_list_preference">dialog_title_list_preference</string>
+    <string name="launch_preferences">launch_preferences</string>
+
+    <string name="title_screen_preference">title_screen_preference</string>
+    <string name="summary_screen_preference">summary_screen_preference</string>
+
+    <string name="title_next_screen_toggle_preference">title_next_screen_toggle_preference</string>
+    <string name="summary_next_screen_toggle_preference">summary_next_screen_toggle_preference</string>
+
+    <string name="title_intent_preference">title_intent_preference</string>
+    <string name="summary_intent_preference">summary_intent_preference</string>
+
+    <string name="title_parent_preference">title_parent_preference</string>
+    <string name="summary_parent_preference">summary_parent_preference</string>
+    <string name="title_child_preference">title_child_preference</string>
+    <string name="summary_child_preference">summary_child_preference</string>
+
+    <string name="preference_attributes">preference_attributes</string>
+    <string name="notifications_category">Notifications</string>
+    <string name="show_notifications_checkbox_preference">Capture notifications</string>
+
+
+</resources>

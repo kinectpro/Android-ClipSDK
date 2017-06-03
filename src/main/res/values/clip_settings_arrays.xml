@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sampling_rate_text">
+        <item>"100"</item>
+        <item>"200"</item>
+        <item>"400"</item>
+        <item>"450"</item>
+        <item>"500"</item>
+        <item>"600"</item>
+        <item>"800"</item>
+        <item>"1000"</item>
+    </string-array>
+    <integer-array name="sampling_rate_speed">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </integer-array>
+
+    <string-array name="vibration_intensity">
+        <item>"HIGH"</item>
+        <item>"MEDIUM"</item>
+        <item>"LOW"</item>
+    </string-array>
+
+    <string-array name="fitnessEntries">
+        <item>Kilometers</item>
+        <item>Miles</item>
+    </string-array>
+
+    <string-array name="fitnessValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <integer-array name="vibration_intensity_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+</resources>
