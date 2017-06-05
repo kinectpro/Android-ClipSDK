@@ -56,6 +56,9 @@ public class FlicktekSettings {
         return false;
     }
 
+    // Settings
+    public static final String SETTINGS_DISABLE_VIBRATION_FEEDBACK = "DISABLE_VIBRATION";
+
     private boolean mIsCallingFromWatch = true;
 
     public static FlicktekSettings getInstance() {

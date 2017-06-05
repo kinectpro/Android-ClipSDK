@@ -683,11 +683,16 @@ public class FlicktekCommands {
                 switch (value) {
                     case STATUS_SLEEP:
                         Log.v(TAG, "+ STATUS_SLEEP");
-                        vibration_patterns(VIBRATION_SLEEP);
+                        // Vibrate when we go to sleep
+                        if (FlicktekSettings.getInstance().getInt(
+                                FlicktekSettings.SETTINGS_DISABLE_VIBRATION_FEEDBACK, 1) == 0)
+                            vibration_patterns(VIBRATION_SLEEP);
                         break;
                     case STATUS_EXEC:
                         Log.v(TAG, "+ STATUS_EXEC");
-                        vibration_patterns(VIBRATION_EXECUTION);
+                        if (FlicktekSettings.getInstance().getInt(
+                                FlicktekSettings.SETTINGS_DISABLE_VIBRATION_FEEDBACK, 1) == 0)
+                            vibration_patterns(VIBRATION_EXECUTION);
                         break;
                     case STATUS_CALIB:
                         Log.v(TAG, "+ STATUS_CALIB");
