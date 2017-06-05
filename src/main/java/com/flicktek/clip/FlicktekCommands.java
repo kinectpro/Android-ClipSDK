@@ -34,7 +34,7 @@ public class FlicktekCommands {
     private static String TAG = "FlicktekCommands";
 
     // Version for which this set of commands was built
-    public static final String FIRMWARE_APPLICATION_VERSION = "v190517-1158";
+    public static final String FIRMWARE_APPLICATION_VERSION = "v310517-0745";
 
     // Abstract interface to send data into the UART
     // So we can use different BLE profiles to send data
