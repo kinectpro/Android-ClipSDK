@@ -15,6 +15,12 @@
             android:summary="@string/show_notifications_checkbox_preference"
             android:title="@string/show_notifications"/>
 
+        <Preference
+            android:title="@string/blocked_notifications"
+            android:key="blocked_notifications">
+
+        </Preference>
+
         <PreferenceScreen
             android:summary="@string/notification_set_listener_summary"
             android:title="@string/notification_set_listener_title">

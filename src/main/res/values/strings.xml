@@ -28,4 +28,5 @@
 	<string name="display_debug_interface_title">Display debug interface items</string>
     <string name="display_debug_lock_portrait_summary">Don\'t allow sensor rotation</string>
 	<string name="display_debug_lock_portrait_title">Fix into Portrait mode</string>
+	<string name="blocked_notifications">Blocked notifications</string>
 </resources>
