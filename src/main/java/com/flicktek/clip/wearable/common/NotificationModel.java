@@ -5,13 +5,16 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 
 public class NotificationModel {
+
     private int id;
     private String title;
     private String text;
     private String key;
+    private int messagesCount;
     private Drawable icon;
     private byte[] smallIconBytes;
     private String applicationName;
+    private String applicationPackage;
     private long timePosted;
     private boolean isFromWakeLock;
 
@@ -114,5 +117,21 @@ public class NotificationModel {
 
     public void setFromWakeLock(boolean fromWakeLock) {
         isFromWakeLock = fromWakeLock;
+    }
+
+    public int getMessagesCount() {
+        return messagesCount;
+    }
+
+    public void setMessagesCount(int messagesCount) {
+        this.messagesCount = messagesCount;
+    }
+
+    public String getApplicationPackage() {
+        return applicationPackage;
+    }
+
+    public void setApplicationPackage(String applicationPackage) {
+        this.applicationPackage = applicationPackage;
     }
 }

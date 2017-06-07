@@ -98,11 +98,27 @@ public final class Constants {
         public static final String NOTIFICATION_KEY_CONTENT = "content";
         public static final String NOTIFICATION_KEY_BITMAP_ASSET = "asset";
         public static final String NOTIFICATION_KEY_SMALL_BITMAP_PARCELABLE = "small_icon_bytes";
-        public static final String NOTIFICATION_CALLING = "notification_calling";
         public static final String NOTIFICATION_ACTION_DISMISS = "com.flicktek.clip.notifications.DISMISS";
+        public static final String NOTIFICATION_REMOVE_PATH = "/notification_remove";
+        public static final String NOTIFICATION_REMOVE_ID = "/notification_remove_id";
+        public static final String UNBLOCK_NOTIFICATION_ROUTE = "/unblock_notification_path";
+        public static final String UNBLOCK_NOTIFICATION_KEY= "unblock_notification_key";
+
+        public static final String BLOCKED_NOTIFICATION_KEY = "blocked_notification_key";
+        public static final String NOTIFICATION_PACKAGE_KEY = "package";
+        public static final String NOTIFICAION_APPLICATION_NAME_KEY = "application_name_key";
+        public static final String NOTIFICAION_APPLICATION_NAME_KEY_ID = "application_name_key_id";
+        public static final String NOTIFICATION_IS_BLOCKED_KEY = "is_blocked_key";
+        public static final String GETTING_BLOCKED_NOTIFICATION_REQUEST_TO_WATCH = "getting_blocked_notification_request_to_watch";
+        public static final String GETTING_BLOCKED_NOTIFICATION_REQUEST_TO_PHONE = "getting_blocked_notification_request_to_phone";
+        public static final String NOTIFICATION_CALLING = "notification_calling";
+        public static final String NOTIFICATION_PACKAGE = "notification_package";
         public static final String RAW_SENSOR_GESTURE = "/sensor_raw_data";
         public static final String RAW_GESTURE = "raw_compressed";
         public static final String CANCEL_NOTIFICATION = "cancel_notification";
+        public static final String NOTIFICATION_KEY_EXTRA_TEXT = "extra_text";
+        public static final String NOTIFICATION_KEY_EXTRA_SUB_TEXT = "extra_sub_text";
+        public static final String NOTIFICATION_KEY_EXTRA_BIG_TEXT = "extra_bit_text";
 
         // Settings set on the FlicktekSetting
         public static final String APPLICATION_SETTING = "/app_setting";
