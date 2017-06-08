@@ -15,6 +15,7 @@ public class NotificationModel {
     private byte[] smallIconBytes;
     private String applicationName;
     private String applicationPackage;
+    private String textForPreview;
     private long timePosted;
     private boolean isFromWakeLock;
 
@@ -133,5 +134,13 @@ public class NotificationModel {
 
     public void setApplicationPackage(String applicationPackage) {
         this.applicationPackage = applicationPackage;
+    }
+
+    public String getTextForPreview() {
+        return textForPreview;
+    }
+
+    public void setTextForPreview(String textForPreview) {
+        this.textForPreview = textForPreview;
     }
 }
