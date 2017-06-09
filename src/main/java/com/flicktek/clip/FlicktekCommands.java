@@ -12,8 +12,6 @@ import android.os.Vibrator;
 import android.util.Log;
 
 import com.flicktek.clip.common.R;
-import com.flicktek.clip.wearable.common.Constants;
-import com.flicktek.clip.wearable.common.NotificationModel;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -365,6 +363,7 @@ public class FlicktekCommands {
         setCaptureRate(1);
     }
 
+    /*
     public void onNeedToStartActivityFromNotification(NotificationModel model) {
         // The application hasn't been launched so we don't capture notifications
         if (mContext == null) {
@@ -381,6 +380,7 @@ public class FlicktekCommands {
         // Otherwise we let the application to capture the notification and figure out what to do
         // with it.
     }
+    */
 
     public void onGestureChanged(int value) {
         mLastGesture = value;
@@ -1234,14 +1234,6 @@ public class FlicktekCommands {
             this.gesture = value;
             this.u16t_sensor = sensor_data;
             this.byte_array = raw;
-        }
-    }
-
-    public class onNotificationEvent {
-        public NotificationModel model;
-
-        public onNotificationEvent(NotificationModel model) {
-            this.model = model;
         }
     }
 }
