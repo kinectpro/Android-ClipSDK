@@ -4,6 +4,7 @@ import android.os.Debug;
 import android.support.annotation.IntDef;
 import android.util.Log;
 
+import com.flicktek.clip.eventbus.BluetoothStateEvent;
 import com.flicktek.clip.eventbus.ConnectedEvent;
 import com.flicktek.clip.eventbus.ConnectingEvent;
 import com.flicktek.clip.eventbus.DeviceToPhoneEvent;
@@ -85,11 +86,19 @@ public class FlicktekManager {
     private boolean mIsCharging = false;
 
     public int mSamplingRateTicks = 0;
+
     public void setSamplingRateTicks(int samplingRateTicks) {
         this.mSamplingRateTicks = samplingRateTicks;
     }
 
     //-------------- CONNECTION -----------------------
+
+    private int mBluetoothState = STATUS_NONE;
+
+    public void setBluetoothState(int bluetoothState) {
+        mBluetoothState = bluetoothState;
+        EventBus.getDefault().post(new BluetoothStateEvent(bluetoothState));
+    }
 
     private boolean mIsConnected = false;
     private int mStatus = STATUS_NONE;
@@ -108,8 +117,8 @@ public class FlicktekManager {
 
     // Read from settings permanent information
     public void init() {
-        mDeviceName = FlicktekSettings.getInstance().getString(FlicktekSettings.DEVICE_CLIP_NAME,"");
-        mMacAddress = FlicktekSettings.getInstance().getString(FlicktekSettings.DEVICE_MAC_SELECTED,"");
+        mDeviceName = FlicktekSettings.getInstance().getString(FlicktekSettings.DEVICE_CLIP_NAME, "");
+        mMacAddress = FlicktekSettings.getInstance().getString(FlicktekSettings.DEVICE_MAC_SELECTED, "");
         mFirmwareVersion = FlicktekSettings.getInstance().getString(FlicktekSettings.FIRMWARE_VERSION, "");
     }
 

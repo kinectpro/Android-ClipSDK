@@ -39,6 +39,7 @@ import android.widget.Toast;
 import com.flicktek.clip.FlicktekCommands;
 import com.flicktek.clip.FlicktekManager;
 import com.flicktek.clip.FlicktekSettings;
+import com.flicktek.clip.eventbus.BluetoothStateEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -112,6 +113,8 @@ public class BleProfileService extends Service implements BleManagerCallbacks {
                     onBluetoothDisabled();
                     break;
             }
+
+            FlicktekManager.getInstance().setBluetoothState(state);
         }
     };
 
