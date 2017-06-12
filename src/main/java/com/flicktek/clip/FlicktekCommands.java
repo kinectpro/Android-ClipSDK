@@ -411,6 +411,8 @@ public class FlicktekCommands {
         Log.d(TAG, "onGestureChanged: " + value +
                 " Paused " + mIsApplicationPaused +
                 " Visible " + mIsApplicationVisible);
+
+        ClipBroadcastIntents.openBroadcastGesture(mContext, value);
     }
 
     //---------- Write commands -----------------------------------------------------

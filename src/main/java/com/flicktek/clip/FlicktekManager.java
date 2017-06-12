@@ -331,6 +331,9 @@ public class FlicktekManager {
     }
 
     public String getMacAddress() {
+        if (mMacAddress == null || mMacAddress.length() == 0)
+            init();
+
         return mMacAddress;
     }
 
