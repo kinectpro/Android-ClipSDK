@@ -46,6 +46,10 @@ public class FlicktekSettings {
     public static final String CONNECT_DEVICE_PHONE = "connect_phone";
     public static final String CONNECT_DEVICE_WEAR = "connect_wear";
 
+    // Upload gestures
+    public static final String UPLOAD_GESTURES_WEAR = "gestures_wear_upload";
+    public static final String UPLOAD_GESTURES_APP = "gestures_app_upload";
+
     private boolean mIsWatchConnectedToPhone;
 
     public static final String PORTRAIT_LOCK_ORIENTATION = "orientation_lock_portrait";
@@ -191,6 +195,20 @@ public class FlicktekSettings {
         return (str != null && str.length() > 0);
     }
 
+    public boolean getBoolean(String key, boolean default_value) {
+        if (mPreferences == null)
+            return default_value;
+
+        return mPreferences.getBoolean(key, default_value);
+    }
+
+    public void putBoolean(String key, boolean value) {
+        if (mPreferences == null)
+            return;
+
+        mPreferences.edit().putBoolean(key, value).apply();
+    }
+
     public class onSettingsEvent {
         public String key;
         public String value;
@@ -202,5 +220,4 @@ public class FlicktekSettings {
             this.old_value = old_value;
         }
     }
-
 }

@@ -20,13 +20,15 @@
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.flicktek.clip.ble;
+package no.nordicsemi.android.nrftoolbox.ble;
 
 import android.bluetooth.BluetoothGatt;
 
+import com.flicktek.clip.ble.BleProfile;
 import com.flicktek.clip.uart.UARTProfile;
 
 public class BleProfileProvider {
+
 	public static BleProfile findProfile(final BluetoothGatt gatt) {
 		if (UARTProfile.matchDevice(gatt))
 			return new UARTProfile();

@@ -148,6 +148,8 @@ public class FlicktekCommands {
 
     private boolean mIsApplicationPaused = false;
     private boolean mIsApplicationVisible = false;
+
+    private boolean mIsExternalUsingSDK = false;
     private int mDevice_State = STATUS_IDLE;
 
     // Currently configured sampling rate
@@ -245,15 +247,32 @@ public class FlicktekCommands {
         }).start();
     }
 
+    public void setApplicationExternal() {
+        mIsExternalUsingSDK = true;
+    }
+
     public void setApplicationPaused(boolean applicationPaused) {
         if (mContext == null)
             return;
 
+        if (mIsExternalUsingSDK == true && applicationPaused) {
+            // There is a third party application using Flicktek,
+            // we disable the clip sleep mode.
+            Log.v(TAG, "++++++++++++ THIRD PARTY APPLICATION USING CLIP! ++++++++++++++ ");
+            return;
+        }
+
+        if (mIsExternalUsingSDK) {
+            Log.v(TAG, "++++++++++++ THIRD PARTY APPLICATION STOPPED USING CLIP! ++++++++++++++ ");
+            mIsExternalUsingSDK = false;
+        }
+
         AlarmManager alarmManager;
-        if (applicationPaused)
+        if (applicationPaused) {
             Log.v(TAG, "++++++++++++ APPLICATION PAUSED! ++++++++++++++ " + mDevice_State);
-        else
+        } else {
             Log.v(TAG, "++++++++++++ APPLICATION WAKEUP! ++++++++++++++ " + mDevice_State);
+        }
 
         if (applicationPaused) {
             if (mDevice_State == STATUS_SLEEP || mAlarmPendingIntent != null) {
@@ -384,21 +403,24 @@ public class FlicktekCommands {
 
     public void onGestureChanged(int value) {
         mLastGesture = value;
-        if (!mIsApplicationVisible &&
-                (value == GESTURE_ENTER || value == GESTURE_PHYSICAL_BUTTON)) {
-            Log.v(TAG, "########## RELAUNCH ##########");
-            if (mContext != null) {
-                Intent LaunchIntent = mContext.getPackageManager().getLaunchIntentForPackage(mContext.getPackageName());
-                mContext.startActivity(LaunchIntent);
-            } else {
-                Log.v(TAG, "!!!!!!!!! NO CONTEXT !!!!!!!!!");
-            }
+
+        if (!mIsExternalUsingSDK) {
+            if (!mIsApplicationVisible &&
+                    (value == GESTURE_ENTER || value == GESTURE_PHYSICAL_BUTTON)) {
+                Log.v(TAG, "########## RELAUNCH ##########");
+                if (mContext != null) {
+                    Intent LaunchIntent = mContext.getPackageManager().getLaunchIntentForPackage(mContext.getPackageName());
+                    mContext.startActivity(LaunchIntent);
+                } else {
+                    Log.v(TAG, "!!!!!!!!! NO CONTEXT !!!!!!!!!");
+                }
 
             /*
             final Intent activity = new Intent(mContext, MainActivity.class);
             activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.getApplicationContext().startActivity(activity);
             */
+            }
         }
 
         if (value == FlicktekManager.GESTURE_NONE) {
