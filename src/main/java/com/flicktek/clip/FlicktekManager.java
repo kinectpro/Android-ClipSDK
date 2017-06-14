@@ -347,7 +347,7 @@ public class FlicktekManager {
         }
 
         if (Debug.isDebuggerConnected()) {
-            return true;
+            return false;
         }
 
         return false;

@@ -762,6 +762,7 @@ public class FlicktekCommands {
                     setApplicationPaused(false);
                 }
 
+                onGestureChanged(FlicktekManager.GESTURE_PHYSICAL_BUTTON);
                 EventBus.getDefault().post(new onButtonPressed(response));
                 break;
             case "STK":
