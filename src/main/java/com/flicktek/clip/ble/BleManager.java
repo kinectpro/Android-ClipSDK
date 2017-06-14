@@ -62,6 +62,7 @@ import java.util.UUID;
 public class BleManager implements BleProfileApi {
 	private final static String TAG = "BleManager";
 
+	public final static UUID CLIENT_CHARACTERISTIC_CONFIG_DESCRIPTOR_UUID = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
 
 	private final static UUID BATTERY_SERVICE = UUID.fromString("0000180F-0000-1000-8000-00805f9b34fb");
 	private final static UUID BATTERY_LEVEL_CHARACTERISTIC = UUID.fromString("00002A19-0000-1000-8000-00805f9b34fb");
@@ -187,6 +188,7 @@ public class BleManager implements BleProfileApi {
 	 * @return autoConnect flag value
 	 */
 	protected boolean shouldAutoConnect() {
+		return true;
 	}
 
 	/**
@@ -645,6 +647,7 @@ public class BleManager implements BleProfileApi {
 		@Override
 		public final void onServicesDiscovered(final BluetoothGatt gatt, final int status) {
 			if (status == BluetoothGatt.GATT_SUCCESS) {
+				final BleProfile profile = no.nordicsemi.android.nrftoolbox.ble.BleProfileProvider.findProfile(gatt);
 				if (profile != null) {
 					profile.setApi(BleManager.this);
 					mProfile = profile;
