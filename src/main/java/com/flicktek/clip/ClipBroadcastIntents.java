@@ -16,6 +16,7 @@ public class ClipBroadcastIntents {
     public static final String ACTION_URI_SEND = "com.flicktek.clip.ACTION_URI_SEND";
     public static final String ACTION_URI_GESTURE = "com.flicktek.clip.ACTION_GESTURE";
     public static final String ACTION_URI_WAKEUP = "com.flicktek.clip.ACTION_WAKEUP";
+    public static final String ACTION_URI_BACK = "com.flicktek.clip.ACTION_BACK";
 
     public static final String EXTRA_URI = "com.flicktek.clip.EXTRA_URI";
 

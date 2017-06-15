@@ -251,6 +251,10 @@ public class FlicktekCommands {
         mIsExternalUsingSDK = true;
     }
 
+    public void setApplicationInternal() {
+        mIsExternalUsingSDK = false;
+    }
+
     public void setApplicationPaused(boolean applicationPaused) {
         if (mContext == null)
             return;
