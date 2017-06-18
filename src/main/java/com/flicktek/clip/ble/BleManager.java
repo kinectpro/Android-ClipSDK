@@ -39,6 +39,9 @@ import android.util.Log;
 
 import com.flicktek.clip.FlicktekSettings;
 
+import com.flicktek.clip.FlicktekCommands;
+
+import java.lang.reflect.Method;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -702,6 +705,11 @@ public class BleManager implements BleProfileApi {
                     // 1. On devices running Android 4.3-6.0 the Service Changed characteristic needs to be enabled by the app (for bonded devices)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
                         mInitQueue.addFirst(Request.newEnableServiceChangedIndicationsRequest());
+
+                    // The device will not send back the Handshake if it was already connected for the first time
+                    // when bonding!
+                    if (gatt.getDevice().getBondState() == BluetoothDevice.BOND_BONDED)
+                        FlicktekCommands.getInstance().onReadyToSendData(false);
 
                     mOperationInProgress = false;
                     nextRequest();
