@@ -150,15 +150,31 @@ public class FlicktekManager {
             return false;
         }
 
+        if (isFirstReleaseVersion())
+            return true;
+
+        if (firmware_version.equals(FlicktekCommands.FIRMWARE_APPLICATION_VERSION)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFirstReleaseVersion() {
+        String firmware_version = getFirmwareVersion();
+        if (firmware_version == null)
+            return false;
+
         if (firmware_version.equals(FlicktekCommands.FIRMWARE_PRODUCTION_VERSION)) {
             Log.v(TAG, "Found production version!");
             Log.v(TAG, "We will not update for the next few releases");
             return true;
         }
 
-        if (firmware_version.equals(FlicktekCommands.FIRMWARE_APPLICATION_VERSION)) {
-            return true;
-        }
+        return false;
+    }
+
+    public boolean isBondingSupported() {
+        // TODO Check version release
         return false;
     }
 

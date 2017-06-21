@@ -637,7 +637,12 @@ public class BleManager implements BleProfileApi {
 
                 final boolean bonded = gatt.getDevice().getBondState() == BluetoothDevice.BOND_BONDED;
                 if (!bonded) {
-                    //createBond();
+                    // Should we bond on wear ?
+                    // We are going to bond only on HID devices initially.
+                    // If we change our mind, we can bond here again.
+                    //
+                    // The applications on the phone will try to bond and remove the bond when finished.
+                    // createBond();
                 }
 
                 final int delay = bonded ? 1600 : 0; // around 1600 ms is required when connection interval is ~45ms.
