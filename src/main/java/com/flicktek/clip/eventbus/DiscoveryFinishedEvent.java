@@ -1,6 +1,5 @@
 package com.flicktek.clip.eventbus;
 
-
 public class DiscoveryFinishedEvent {
 	public final Boolean found;
 

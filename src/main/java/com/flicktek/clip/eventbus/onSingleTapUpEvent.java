@@ -1,4 +1,4 @@
 package com.flicktek.clip.eventbus;
 
-public class LinkLossEvent {
+public class onSingleTapUpEvent {
 }

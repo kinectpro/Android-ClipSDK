@@ -1,6 +1,5 @@
 package com.flicktek.clip;
 
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -27,7 +26,6 @@ import static com.flicktek.clip.FlicktekManager.GESTURE_HOME;
 import static com.flicktek.clip.FlicktekManager.GESTURE_PHYSICAL_BUTTON;
 import static com.flicktek.clip.FlicktekManager.GESTURE_UP;
 
-// extends UARTProfile
 public class FlicktekCommands {
     private static String TAG = "FlicktekCommands";
 
