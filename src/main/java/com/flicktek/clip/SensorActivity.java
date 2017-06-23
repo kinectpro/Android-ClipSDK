@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -31,7 +32,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private static final String TAG = "Sensor";
 
     private SensorManager mSensorManager;
-    private final float[] mAccelerometerReading = new float[3];
+    private static final float[] mAccelerometerReading = new float[3];
     private final float[] mMagnetometerReading = new float[3];
 
     private final float[] mRotationMatrix = new float[9];
@@ -47,6 +48,47 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private Sensor mAccelerometer;
     private Sensor mMagnetic;
     private Sensor mGyro;
+
+    private static SensorState mSensorStateCache = null;
+
+    public static class SensorState {
+        public float[] mAccelerometerReading = new float[3];
+        public float[] mGravity = new float[3];
+        public float[] mRotationMatrix = new float[9];
+        public float[] mOrientationAngles = new float[3];
+
+        public double mPitch = 0;
+        public double mRoll = 0;
+
+        public int mCurrentRollState = 0;
+        public int mCurrentPitchState = 0;
+
+        public void populate() {
+            System.arraycopy(mAccelerometerReading, 0, mSensorStateCache.mAccelerometerReading,
+                    0, mAccelerometerReading.length);
+
+            System.arraycopy(mGravity, 0, mSensorStateCache.mGravity,
+                    0, mGravity.length);
+
+            System.arraycopy(mRotationMatrix, 0, mSensorStateCache.mRotationMatrix,
+                    0, mRotationMatrix.length);
+
+            System.arraycopy(mOrientationAngles, 0, mSensorStateCache.mOrientationAngles,
+                    0, mOrientationAngles.length);
+
+            mPitch = SensorActivity.mPitch;
+            mRoll = SensorActivity.mRoll;
+
+            mCurrentPitchState = SensorActivity.mCurrentPitchState;
+            mCurrentRollState = SensorActivity.mCurrentRollState;
+        }
+
+        public boolean isEmpty() {
+            if (mPitch == 0 && mRoll == 0)
+                return true;
+            return false;
+        }
+    }
 
     public static final class ORIENTATIONS {
         public static final int NORMAL = 0;
@@ -101,6 +143,32 @@ public class SensorActivity extends Activity implements SensorEventListener {
         return mCurrentPitchState;
     }
 
+    public static synchronized boolean calculateGestureState() {
+        // We don't have sensor data or a calculation.
+        if (mPitch == 0 && mRoll == 0)
+            return false;
+
+        calculatePitchRoll(gravity[0], gravity[1], gravity[2]);
+        calculatePitchState();
+
+        if (mSensorStateCache == null) {
+            mSensorStateCache = new SensorState();
+        }
+
+        mSensorStateCache.populate();
+        return true;
+    }
+
+    @Nullable
+    public static synchronized SensorState consumeGestureState() {
+        SensorState ret = mSensorStateCache;
+        if (mSensorStateCache == null || mSensorStateCache.isEmpty())
+            return null;
+
+        mSensorStateCache = null;
+        return ret;
+    }
+
     public GestureDetector mDetector;
 
     //Roll & Pitch are the angles which rotate by the axis X and y
@@ -112,7 +180,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     public int mLastRoll = 0;
     public int lastRoll = 0;
 
-    public void calculatePitchRoll(float x_Buff, float y_Buff, float z_Buff) {
+    public static void calculatePitchRoll(float x_Buff, float y_Buff, float z_Buff) {
         mRoll = Math.atan2(y_Buff, z_Buff) * 57.3f;
         mPitch = Math.atan2((-x_Buff), Math.sqrt(y_Buff * y_Buff + z_Buff * z_Buff)) * 57.3f;
     }
@@ -165,8 +233,8 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     private final static double EPSILON = 0.00001;
 
-    float linear_acceleration[] = new float[3];
-    float gravity[] = new float[3];
+    public static float linear_acceleration[] = new float[3];
+    public static float gravity[] = new float[3];
 
     private static final float NS2S = 1.0f / 1000000000.0f;
     private final float[] deltaRotationVector = new float[4];
@@ -249,12 +317,11 @@ public class SensorActivity extends Activity implements SensorEventListener {
             linear_acceleration[1] = event.values[1] - gravity[1];
             linear_acceleration[2] = event.values[2] - gravity[2];
 
-            calculatePitchRoll(gravity[0], gravity[1], gravity[2]);
             detectShake(event);
 
             long now = System.currentTimeMillis();
             if ((now - mLastShakeTime) > SHAKE_WAIT_TIME_MS) {
-                calculatePitchState();
+                calculateGestureState();
             }
 
             //Log.v(TAG, "gravity " + gravity[0] + "," + gravity[1] + "," +gravity[2]);
@@ -339,7 +406,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
             mRotationTime = now;
             mShakeTime = now;
 
-                // Change background color if rate of rotation around any
+            // Change background color if rate of rotation around any
             // axis and in any direction exceeds threshold;
             // otherwise, reset the color
             if (Math.abs(event.values[0]) > ROTATION_THRESHOLD ||

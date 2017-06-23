@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.flicktek.clip.common.R;
@@ -25,6 +26,7 @@ import static com.flicktek.clip.FlicktekManager.GESTURE_ENTER;
 import static com.flicktek.clip.FlicktekManager.GESTURE_HOME;
 import static com.flicktek.clip.FlicktekManager.GESTURE_PHYSICAL_BUTTON;
 import static com.flicktek.clip.FlicktekManager.GESTURE_UP;
+import static com.flicktek.clip.SensorActivity.*;
 
 public class FlicktekCommands {
     private static String TAG = "FlicktekCommands";
@@ -426,10 +428,13 @@ public class FlicktekCommands {
             }
         }
 
+        // Get the last gesture data from the sensor activity.
+        SensorState state = consumeGestureState();
+
         if (value == FlicktekManager.GESTURE_NONE) {
-            EventBus.getDefault().post(new onGestureNotClassified());
+            EventBus.getDefault().post(new onGestureNotClassified(state));
         } else {
-            EventBus.getDefault().post(new onGestureEvent(value));
+            EventBus.getDefault().post(new onGestureEvent(value, state));
             vibration_patterns(value);
         }
 
@@ -1178,13 +1183,6 @@ public class FlicktekCommands {
         }
     }
 
-    // We have a gesture which is not classified by the algorithm
-    public class onGestureNotClassified {
-        public onGestureNotClassified() {
-
-        }
-    }
-
     public class onButtonPressed {
         public String value;
 
@@ -1229,10 +1227,21 @@ public class FlicktekCommands {
         }
     }
 
+    // We have a gesture which is not classified by the algorithm
+    public class onGestureNotClassified {
+        @Nullable
+        public SensorState sensors_state;
+
+        public onGestureNotClassified(@Nullable SensorState sensorstate) {
+            this.sensors_state = sensorstate;
+        }
+    }
+
     // Gestures classified. the could be FlicktekManager.GESTURE_XXXX
     public class onGestureEvent {
         public Integer status;
         public Integer quality;
+        public SensorState sensors_state;
 
         public onGestureEvent(int value) {
             this.status = value;
@@ -1241,6 +1250,11 @@ public class FlicktekCommands {
         public onGestureEvent(int value, int quality) {
             this.status = value;
             this.quality = quality;
+        }
+
+        public onGestureEvent(int value, @Nullable SensorState sensorstate) {
+            this.status = value;
+            this.sensors_state = sensorstate;
         }
     }
 
