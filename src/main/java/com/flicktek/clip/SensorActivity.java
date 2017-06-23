@@ -144,11 +144,12 @@ public class SensorActivity extends Activity implements SensorEventListener {
     }
 
     public static synchronized boolean calculateGestureState() {
+        calculatePitchRoll(gravity[0], gravity[1], gravity[2]);
+
         // We don't have sensor data or a calculation.
         if (mPitch == 0 && mRoll == 0)
             return false;
 
-        calculatePitchRoll(gravity[0], gravity[1], gravity[2]);
         calculatePitchState();
 
         if (mSensorStateCache == null) {
