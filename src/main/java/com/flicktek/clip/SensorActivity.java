@@ -17,6 +17,10 @@ import com.flicktek.clip.eventbus.onSingleTapUpEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import static com.flicktek.clip.SensorActivity.ORIENTATIONS.HAND_DOWN;
+import static com.flicktek.clip.SensorActivity.ORIENTATIONS.HAND_LEVEL;
+import static com.flicktek.clip.SensorActivity.ORIENTATIONS.HAND_UP;
+import static com.flicktek.clip.SensorActivity.ORIENTATIONS.NORMAL;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -43,6 +47,59 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private Sensor mAccelerometer;
     private Sensor mMagnetic;
     private Sensor mGyro;
+
+    public static final class ORIENTATIONS {
+        public static final int NORMAL = 0;
+
+        public static final int HAND_UP = 1;         // < -45
+        public static final int HAND_DOWN = 2;       // > 45
+        public static final int HAND_LEVEL = 3;      //
+
+        public static final int WATCH_FACE_USER = 4; // 27 ... 80
+        public static final int WATCH_VERTICAL = 5;  // -75 .. -105
+        public static final int PALM_UP = 6;         // < -130  .. > 130
+        public static final int PALM_DOWN = 7;       // < 20 .. > ~20
+
+        public String[] STRINGS = {"HAND_UP", "HAND_DOWN", "HAND_LEVEL", "PALM_UP", "PALM_DOWN"};
+    }
+
+    public static int mCurrentRollState = NORMAL;
+    public static int mCurrentPitchState = HAND_LEVEL;
+
+    public static int calculatePitchState() {
+        int state = HAND_LEVEL;
+
+        if (mPitch < -45) {
+            state = HAND_UP;
+        } else if (mPitch > 45) {
+            state = HAND_DOWN;
+        } else {
+            if (mPitch < 35 && mPitch > -35) {
+                state = HAND_LEVEL;
+            }
+        }
+
+        if (state != mCurrentPitchState) {
+            switch (state) {
+                case HAND_UP:
+                    EventBus.getDefault().post(new onHandUp());
+                    break;
+                case HAND_DOWN:
+                    EventBus.getDefault().post(new onHandDown());
+                    break;
+                case HAND_LEVEL:
+                    EventBus.getDefault().post(new onHandLevel());
+                    break;
+            }
+
+            // Disable check for the next few ms
+            long now = System.currentTimeMillis();
+            mLastShakeTime = now;
+        }
+
+        mCurrentPitchState = state;
+        return mCurrentPitchState;
+    }
 
     public GestureDetector mDetector;
 
@@ -195,6 +252,11 @@ public class SensorActivity extends Activity implements SensorEventListener {
             calculatePitchRoll(gravity[0], gravity[1], gravity[2]);
             detectShake(event);
 
+            long now = System.currentTimeMillis();
+            if ((now - mLastShakeTime) > SHAKE_WAIT_TIME_MS) {
+                calculatePitchState();
+            }
+
             //Log.v(TAG, "gravity " + gravity[0] + "," + gravity[1] + "," +gravity[2]);
 
         } else if (event.sensor.getType() == (Sensor.TYPE_MAGNETIC_FIELD)) {
@@ -208,6 +270,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     }
 
     // Shake detection
+    private static long mLastShakeTime = 0;
     private long mShakeTime = 0;
     private long mRotationTime = 0;
 
@@ -239,6 +302,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     public void onRotationStop() {
         //Log.v(TAG, "Stopped rotating");
+        EventBus.getDefault().post(new onRotationStopped());
     }
 
     // References:
@@ -260,6 +324,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
             // Change background color if gForce exceeds threshold;
             // otherwise, reset the color
             if (gForce > SHAKE_THRESHOLD) {
+                mLastShakeTime = now;
                 onShacking();
             } else {
                 onNotShacking();
@@ -272,8 +337,9 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
         if ((now - mRotationTime) > ROTATION_WAIT_TIME_MS) {
             mRotationTime = now;
+            mShakeTime = now;
 
-            // Change background color if rate of rotation around any
+                // Change background color if rate of rotation around any
             // axis and in any direction exceeds threshold;
             // otherwise, reset the color
             if (Math.abs(event.values[0]) > ROTATION_THRESHOLD ||
@@ -389,23 +455,28 @@ public class SensorActivity extends Activity implements SensorEventListener {
         }
     }
 
-    public class onHandUp {
+    public static class onHandUp {
         public onHandUp() {
         }
     }
 
-    public class onHandDown {
+    public static class onHandDown {
         public onHandDown() {
         }
     }
 
-    public class onFaceUp {
-        public onFaceUp() {
+    public static class onHandLevel {
+        public onHandLevel() {
         }
     }
 
-    public class onFaceDown {
-        public onFaceDown() {
+    public class onPalmUp {
+        public onPalmUp() {
+        }
+    }
+
+    public class onPalmDown {
+        public onPalmDown() {
         }
     }
 
@@ -421,6 +492,12 @@ public class SensorActivity extends Activity implements SensorEventListener {
 
     public class onRotating {
         public onRotating() {
+        }
+    }
+
+    public class onRotationStopped {
+        public onRotationStopped() {
+
         }
     }
 }
