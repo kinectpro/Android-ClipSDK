@@ -37,11 +37,10 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
-import com.flicktek.clip.FlicktekSettings;
-
 import com.flicktek.clip.FlicktekCommands;
+import com.flicktek.clip.FlicktekSettings;
+import com.flicktek.clip.uart.UARTProfile;
 
-import java.lang.reflect.Method;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -687,7 +686,8 @@ public class BleManager implements BleProfileApi {
         @Override
         public final void onServicesDiscovered(final BluetoothGatt gatt, final int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                final BleProfile profile = no.nordicsemi.android.nrftoolbox.ble.BleProfileProvider.findProfile(gatt);
+
+                final BleProfile profile = new UARTProfile();
                 if (profile != null) {
                     profile.setApi(BleManager.this);
                     mProfile = profile;
