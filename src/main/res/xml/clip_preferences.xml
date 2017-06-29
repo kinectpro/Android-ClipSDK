@@ -7,18 +7,40 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:title="@string/ifttt">
+        <PreferenceScreen
+            android:summary="@string/ifttt_configure_summary"
+            android:title="@string/ifttt_configure_title">
+            <intent
+                android:action="com.flicktek.clip.ifttt"
+                />
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Fitness">
+
+        <ListPreference
+            android:entries="@array/fitnessEntries"
+            android:entryValues="@array/fitnessValues"
+            android:key="fitness_key"
+            android:summary="km/mi"
+            android:title="Distance"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="@string/notifications_category">
 
         <SwitchPreference
             android:key="notifications_show"
             android:padding="@dimen/padding_medium"
+            android:selectable="false"
             android:summary="@string/show_notifications_checkbox_preference"
             android:title="@string/show_notifications"/>
 
         <Preference
-            android:title="@string/blocked_notifications"
-            android:key="blocked_notifications">
-
+            android:key="blocked_notifications"
+            android:title="@string/blocked_notifications">
         </Preference>
 
         <PreferenceScreen
@@ -38,6 +60,7 @@
         <SwitchPreference
             android:key="vibration_checkbox_preference"
             android:padding="@dimen/padding_medium"
+            android:selectable="false"
             android:summary="@string/wear_vibration_summary_checkbox_preference"
             android:title="@string/wear_vibration"/>
 
@@ -60,6 +83,7 @@
         <EditTextPreference
             android:dialogTitle="@string/device_bluetooth_name_title"
             android:key="device_name"
+            android:selectable="false"
             android:summary="@string/device_bluetooth_name_summary"
             android:title="@string/device_bluetooth_name"/>
 
@@ -72,72 +96,61 @@
             android:title="@string/device_speed_capture"/>
 
         <CheckBoxPreference
-            android:key="display_debug_interface"
             android:defaultValue="false"
+            android:key="display_debug_interface"
             android:summary="@string/display_debug_interface_summary"
             android:title="@string/display_debug_interface_title"/>
 
         <CheckBoxPreference
-            android:key="orientation_lock_portrait"
             android:defaultValue="true"
+            android:key="orientation_lock_portrait"
             android:summary="@string/display_debug_lock_portrait_summary"
             android:title="@string/display_debug_lock_portrait_title"/>
 
     </PreferenceCategory>
 
-<!--
-    <PreferenceCategory
-        android:title="@string/launch_preferences">
-        <PreferenceScreen
-            android:key="screen_preference"
-            android:summary="@string/summary_screen_preference"
-            android:title="@string/title_screen_preference">
+    <!--
+        <PreferenceCategory
+            android:title="@string/launch_preferences">
+            <PreferenceScreen
+                android:key="screen_preference"
+                android:summary="@string/summary_screen_preference"
+                android:title="@string/title_screen_preference">
+
+                <CheckBoxPreference
+                    android:key="next_screen_checkbox_preference"
+                    android:summary="@string/summary_next_screen_toggle_preference"
+                    android:title="@string/title_next_screen_toggle_preference"/>
+
+            </PreferenceScreen>
+
+            <PreferenceScreen
+                android:summary="@string/summary_intent_preference"
+                android:title="@string/title_intent_preference">
+
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="http://www.android.com"/>
+
+            </PreferenceScreen>
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:title="@string/preference_attributes">
 
             <CheckBoxPreference
-                android:key="next_screen_checkbox_preference"
-                android:summary="@string/summary_next_screen_toggle_preference"
-                android:title="@string/title_next_screen_toggle_preference"/>
+                android:key="parent_checkbox_preference"
+                android:summary="@string/summary_parent_preference"
+                android:title="@string/title_parent_preference"/>
 
-        </PreferenceScreen>
+            <CheckBoxPreference
+                android:dependency="parent_checkbox_preference"
+                android:key="child_checkbox_preference"
+                android:layout="?android:attr/preferenceLayoutChild"
+                android:summary="@string/summary_child_preference"
+                android:title="@string/title_child_preference"/>
 
-        <PreferenceScreen
-            android:summary="@string/summary_intent_preference"
-            android:title="@string/title_intent_preference">
-
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://www.android.com"/>
-
-        </PreferenceScreen>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/preference_attributes">
-
-        <CheckBoxPreference
-            android:key="parent_checkbox_preference"
-            android:summary="@string/summary_parent_preference"
-            android:title="@string/title_parent_preference"/>
-
-        <CheckBoxPreference
-            android:dependency="parent_checkbox_preference"
-            android:key="child_checkbox_preference"
-            android:layout="?android:attr/preferenceLayoutChild"
-            android:summary="@string/summary_child_preference"
-            android:title="@string/title_child_preference"/>
-
-    </PreferenceCategory>
--->
-    <PreferenceCategory
-        android:title="Fitness">
-
-        <ListPreference
-            android:summary="km/mi"
-            android:key="fitness_key"
-            android:entryValues="@array/fitnessValues"
-            android:entries="@array/fitnessEntries"
-            android:title="Distance"/>
-    </PreferenceCategory>
-
+        </PreferenceCategory>
+    -->
 </PreferenceScreen>

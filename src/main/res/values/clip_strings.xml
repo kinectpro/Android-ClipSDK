@@ -79,5 +79,8 @@
     <string name="notifications_category">Notifications</string>
     <string name="show_notifications_checkbox_preference">Capture notifications</string>
 
+    <string name="ifttt">IFTTT</string>
+    <string name="ifttt_configure_summary">Setup</string>
+    <string name="ifttt_configure_title">Configure If This Then That</string>
 
 </resources>
