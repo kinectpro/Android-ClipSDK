@@ -118,6 +118,7 @@ public class Wave extends MyGLObject {
         //Log.v(TAG, "---------------------------");
     }
 
+    public static boolean mFadeOut = true;
 
     @Override
     public void interpolate(float elapsed_time) {
@@ -125,10 +126,12 @@ public class Wave extends MyGLObject {
             return;
 
         if (elapsed_time > mDisplayTime) {
-            for (int c = 0; c < mPath.length; c++) {
-                mPath[c] = (int) ((mPath[c] + 5500) / 2);
+            if (mFadeOut) {
+                for (int c = 0; c < mPath.length; c++) {
+                    mPath[c] = (int) ((mPath[c] + 5500) / 2);
+                }
+                setPath(mPath);
             }
-            setPath(mPath);
             return;
         }
 
