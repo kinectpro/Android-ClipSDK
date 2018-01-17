@@ -12,7 +12,7 @@
             android:summary="@string/ifttt_configure_summary"
             android:title="@string/ifttt_configure_title">
             <intent
-                android:action="com.flicktek.clip.ifttt"
+                android:action="com.flicktekltd.clip.ifttt"
                 />
         </PreferenceScreen>
     </PreferenceCategory>
@@ -39,8 +39,8 @@
             android:title="@string/show_notifications"/>
 
         <Preference
-            android:key="blocked_notifications"
-            android:title="@string/blocked_notifications">
+            android:key="allowed_notifications"
+            android:title="@string/allowed_notifications_string">
         </Preference>
 
         <PreferenceScreen
