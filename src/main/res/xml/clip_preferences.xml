@@ -9,6 +9,7 @@
     <PreferenceCategory
         android:title="@string/ifttt">
         <PreferenceScreen
+            android:key="@string/ifttt_prefs_key"
             android:summary="@string/ifttt_configure_summary"
             android:title="@string/ifttt_configure_title">
             <intent
@@ -23,7 +24,7 @@
         <ListPreference
             android:entries="@array/fitnessEntries"
             android:entryValues="@array/fitnessValues"
-            android:key="fitness_key"
+            android:key="@string/fitness_prefs_key"
             android:summary="km/mi"
             android:title="Distance"/>
     </PreferenceCategory>
@@ -39,7 +40,7 @@
             android:title="@string/show_notifications"/>
 
         <Preference
-            android:key="allowed_notifications"
+            android:key="@string/allowed_notifications_prefs_key"
             android:title="@string/allowed_notifications_string">
         </Preference>
 
