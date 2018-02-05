@@ -29,4 +29,7 @@
     <string name="display_debug_lock_portrait_summary">Don\'t allow sensor rotation</string>
 	<string name="display_debug_lock_portrait_title">Fix into Portrait mode</string>
 	<string name="allowed_notifications_string">Allowed notifications</string>
+	<string name="fitness_prefs_key">fitness_key</string>
+	<string name="ifttt_prefs_key">ifttt_key</string>
+	<string name="allowed_notifications_prefs_key">allowed_notifications</string>
 </resources>
