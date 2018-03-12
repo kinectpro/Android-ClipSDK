@@ -83,4 +83,11 @@
     <string name="ifttt_configure_summary">Setup</string>
     <string name="ifttt_configure_title">Configure If This Then That</string>
 
+    <string name="gesture_controller">Gesture Controller</string>
+    <string name="gesture_controller_summary">Update manager</string>
+    <string name="gesture_controller_title">Update the gesture controller firmware</string>
+
+    <string name="gesture_controller_new_version_notify_summary">Turn on firmware updates notifications</string>
+    <string name="gesture_controller_new_version_notify_title">Notify about new firmware versions</string>
+
 </resources>
