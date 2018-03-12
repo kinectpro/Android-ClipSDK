@@ -62,7 +62,7 @@
             android:summary="@string/gesture_controller_summary"
             android:title="@string/gesture_controller_title">
             <intent android:targetPackage="com.flicktekltd.clip"
-                android:targetClass="com.flicktekltd.clip.dfu.DfuCheckActivity"/>
+                android:targetClass="com.flicktekltd.clip.dfu.DfuCheckActivityRelease"/>
         </PreferenceScreen>
 
         <CheckBoxPreference
