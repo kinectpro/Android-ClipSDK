@@ -56,59 +56,76 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/vibration_category">
-
-        <SwitchPreference
-            android:key="vibration_checkbox_preference"
-            android:padding="@dimen/padding_medium"
-            android:selectable="false"
-            android:summary="@string/wear_vibration_summary_checkbox_preference"
-            android:title="@string/wear_vibration"/>
-
-        <ListPreference
-            android:dependency="vibration_checkbox_preference"
-            android:dialogTitle="@string/wear_vibration_intensity_title"
-            android:entries="@array/vibration_intensity"
-            android:entryValues="@array/vibration_intensity_values"
-            android:key="vibration_intensity_list_preference"
-            android:layout="?android:attr/preferenceLayoutChild"
-            android:padding="@dimen/padding_medium"
-            android:summary="@string/wear_vibration_intensity_summary"
-            android:title="@string/wear_vibration_intensity"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/clip_development_settings">
-
-        <EditTextPreference
-            android:dialogTitle="@string/device_bluetooth_name_title"
-            android:key="device_name"
-            android:selectable="false"
-            android:summary="@string/device_bluetooth_name_summary"
-            android:title="@string/device_bluetooth_name"/>
-
-        <ListPreference
-            android:dialogTitle="@string/device_speed_capture_title"
-            android:entries="@array/sampling_rate_text"
-            android:entryValues="@array/sampling_rate_speed"
-            android:key="list_preference"
-            android:summary="@string/device_speed_capture_summary"
-            android:title="@string/device_speed_capture"/>
-
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="display_debug_interface"
-            android:summary="@string/display_debug_interface_summary"
-            android:title="@string/display_debug_interface_title"/>
+        android:title="@string/gesture_controller">
+        <PreferenceScreen
+            android:key="@string/gesture_controller_firmware_update_prefs_key"
+            android:summary="@string/gesture_controller_summary"
+            android:title="@string/gesture_controller_title">
+            <intent android:targetPackage="com.flicktekltd.clip"
+                android:targetClass="com.flicktekltd.clip.dfu.DfuCheckActivityRelease"/>
+        </PreferenceScreen>
 
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="orientation_lock_portrait"
-            android:summary="@string/display_debug_lock_portrait_summary"
-            android:title="@string/display_debug_lock_portrait_title"/>
-
+            android:key="@string/notify_about_gesture_controller_new_firmware"
+            android:summary="@string/gesture_controller_new_version_notify_summary"
+            android:title="@string/gesture_controller_new_version_notify_title"/>
     </PreferenceCategory>
+
+    <!--<PreferenceCategory-->
+        <!--android:title="@string/vibration_category">-->
+
+        <!--<SwitchPreference-->
+            <!--android:key="vibration_checkbox_preference"-->
+            <!--android:padding="@dimen/padding_medium"-->
+            <!--android:selectable="false"-->
+            <!--android:summary="@string/wear_vibration_summary_checkbox_preference"-->
+            <!--android:title="@string/wear_vibration"/>-->
+
+        <!--<ListPreference-->
+            <!--android:dependency="vibration_checkbox_preference"-->
+            <!--android:dialogTitle="@string/wear_vibration_intensity_title"-->
+            <!--android:entries="@array/vibration_intensity"-->
+            <!--android:entryValues="@array/vibration_intensity_values"-->
+            <!--android:key="vibration_intensity_list_preference"-->
+            <!--android:layout="?android:attr/preferenceLayoutChild"-->
+            <!--android:padding="@dimen/padding_medium"-->
+            <!--android:summary="@string/wear_vibration_intensity_summary"-->
+            <!--android:title="@string/wear_vibration_intensity"/>-->
+
+    <!--</PreferenceCategory>-->
+
+    <!--<PreferenceCategory-->
+        <!--android:title="@string/clip_development_settings">-->
+
+        <!--<EditTextPreference-->
+            <!--android:dialogTitle="@string/device_bluetooth_name_title"-->
+            <!--android:key="device_name"-->
+            <!--android:selectable="false"-->
+            <!--android:summary="@string/device_bluetooth_name_summary"-->
+            <!--android:title="@string/device_bluetooth_name"/>-->
+
+        <!--<ListPreference-->
+            <!--android:dialogTitle="@string/device_speed_capture_title"-->
+            <!--android:entries="@array/sampling_rate_text"-->
+            <!--android:entryValues="@array/sampling_rate_speed"-->
+            <!--android:key="list_preference"-->
+            <!--android:summary="@string/device_speed_capture_summary"-->
+            <!--android:title="@string/device_speed_capture"/>-->
+
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="false"-->
+            <!--android:key="display_debug_interface"-->
+            <!--android:summary="@string/display_debug_interface_summary"-->
+            <!--android:title="@string/display_debug_interface_title"/>-->
+
+        <!--<CheckBoxPreference-->
+            <!--android:defaultValue="true"-->
+            <!--android:key="orientation_lock_portrait"-->
+            <!--android:summary="@string/display_debug_lock_portrait_summary"-->
+            <!--android:title="@string/display_debug_lock_portrait_title"/>-->
+
+    <!--</PreferenceCategory>-->
 
     <!--
         <PreferenceCategory

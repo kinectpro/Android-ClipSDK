@@ -32,4 +32,6 @@
 	<string name="fitness_prefs_key">fitness_key</string>
 	<string name="ifttt_prefs_key">ifttt_key</string>
 	<string name="allowed_notifications_prefs_key">allowed_notifications</string>
+	<string name="gesture_controller_firmware_update_prefs_key">gesture_controller_key</string>
+	<string name="notify_about_gesture_controller_new_firmware">new_firmware_update_key</string>
 </resources>

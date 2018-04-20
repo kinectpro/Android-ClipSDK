@@ -56,6 +56,8 @@ public class FlicktekSettings {
     public static final String CHARGING_STATE = "charging";
     public static final String LAST_CHARGING_DATE = "last_charge_date";
 
+    public static final String IS_GESTURE_CONTROLLER_FIRMWARE_UPDATED = "is_gesture_controller_firmware_updated";
+
     public boolean isDemo() {
         return false;
     }
